@@ -15,18 +15,14 @@ vector<string> split(const string &);
  *  2. 2D_INTEGER_ARRAY queries
  */
 
-long arrayManipulation(int n, int m, vector<vector<int>> queries) {
-    long array[n] = {0};
+long arrayManipulation(int n, vector<vector<int>> queries) {
+    int m = queries.size();
+    vector<long> array(n , 0);
     for (int x = 0; x < m; ++x){
         for(int i = queries[x][0]-1; i <= queries[x][1]-1; ++i){
             array[i] += queries[x][2];
         }
     }
-
-    for (int j = 0; j < n; ++j){
-        cout << array[j] << " ";
-    }
-    cout << endl;
 
     /*long max = array[0];
     for(int i = 1; i < n; ++i){
@@ -34,7 +30,7 @@ long arrayManipulation(int n, int m, vector<vector<int>> queries) {
             max = array[i];
         }
     }*/
-    return *max_element(array, array + n);
+    return *max_element(array.begin(), array.end());
 
 }
 
@@ -68,12 +64,12 @@ int main()
         }
     }
 
-    long result = arrayManipulation(n, m, queries);
+    long result = arrayManipulation(n, queries);
 
     fout << result << "\n";
 
     fout.close();
-
+    cout << result << "\n";
     return 0;
 }
 
