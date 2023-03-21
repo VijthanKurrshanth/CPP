@@ -41,10 +41,10 @@ int isPalindrome(int beg, string str, int end){
 
 int main(){
     /*FACTORIAL*/ 
-    // string temp_n;
-    // cin >> temp_n;
-    // int n = stoi(temp_n);
-    // cout << Factorial(n);
+    string temp_n;
+    cin >> temp_n;
+    int n = stoi(temp_n);
+    cout << Factorial(n);
 
     /*SEARCH*/
     //  vector<int> arr = {1,2,3,4,5,6,7,8};
@@ -53,11 +53,12 @@ int main(){
     //  cout << Search(x, arr, len);
 
     /*PALINDROME*/
-    string str;
-    cin >> str;
-    removeSpaces(str);
-    int beg = 1; int end = str.size();
-    int result = isPalindrome(beg, str, end);
-    cout << result;
+    // string str;
+    // cin >> str;
+    // removeSpaces(str);
+    // int beg = 1; int end = str.size();
+    // int result = isPalindrome(beg, str, end);
+    // cout << result;
+    return 0;
 
 }

@@ -107,8 +107,8 @@ int main()
         cout << "number of items: " << sz << endl;
         cout << "Time taken by function: "
          << duration.count() << " microseconds" << endl << endl;
-        //if (sz == 5000)
-        //printArray(randArray, sz);
+        if (sz == 5000)
+            printArray(randArray, sz);
         sz = sz + 5000;
     }
     return 0;
