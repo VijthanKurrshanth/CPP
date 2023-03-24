@@ -35,7 +35,7 @@ int powerSum(int X, int N) {
     int value = round(temp);
 
     for(int i = value; i > 0; i--){
-        if ((count(init_values.begin(), init_values.end(), i) == 0)){
+        //if ((count(init_values.begin(), init_values.end(), i) == 0)){
             int temp = pow(i, N);
             init_values.push_back(i);
             x = X;
@@ -61,7 +61,7 @@ int powerSum(int X, int N) {
                     count --;
                 }
             }
-        }
+        //}
     }
     for (int i = 0; i < int(init_values.size()); i++){
         cout << init_values[i] << " ";
