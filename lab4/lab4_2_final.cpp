@@ -14,7 +14,7 @@ string rtrim(const string &);
  *  2. INTEGER N
  */
 
-long check(long num, vector<long> init_values){
+int check(int num, vector<unsigned int> init_values){
     if ((count(init_values.begin(), init_values.end(), num) != 0)){
         num = num - 1;
         return check(num, init_values);
@@ -24,33 +24,31 @@ long check(long num, vector<long> init_values){
     }
 }
 
-int powerSum(long X, long N) {
-    long no = 0;
-    vector<long> init_values;
-    long sum = 0;
+int powerSum(int X, int N) {
+    int no = 0;
+    vector<unsigned int> init_values;
+    int sum = 0;
     double n = N;
-    long x = X;
+    int x = X;
 
     double temp = pow(x, 1/n);
-    long value = temp/1;
+    int value = round(temp);
 
-    for(long i = value; i > 0; i--){
+    for(int i = value; i > 0; i--){
         if ((count(init_values.begin(), init_values.end(), i) == 0)){
-            double temp = pow(i, N);
-            long value = temp/1;
+            int temp = pow(i, N);
             init_values.push_back(i);
             x = X;
-            x -= value;
-            sum = value;
-            long count = 1;
-            while (sum != X && init_values[init_values.size()-1] !=1 && init_values[init_values.size()-1] > 0){
+            x -= temp;
+            sum = temp;
+            int count = 1;
+            while (sum < X && init_values[init_values.size()-1] !=1 && init_values[init_values.size()-1] > 0){
                 double temp = pow(x, 1/n);
-                long value = temp/1;
+                int value = round(temp);
                 value = check(value, init_values);
-                double temp2 = pow(value, N);
-                long value2 = temp2/1;
-                x -= value2;
-                sum += value2;
+                int temp2 = pow(value, N);
+                x -= temp2;
+                sum += temp2;
                 init_values.push_back(value);
                 count ++;
             }
@@ -65,7 +63,7 @@ int powerSum(long X, long N) {
             }
         }
     }
-    for (long unsigned int i = 0; i < init_values.size(); i++){
+    for (int i = 0; i < int(init_values.size()); i++){
         cout << init_values[i] << " ";
     }
     cout << endl;
@@ -79,12 +77,12 @@ int main()
     string X_temp;
     getline(cin, X_temp);
 
-    long X = stoi(ltrim(rtrim(X_temp)));
+    int X = stoi(ltrim(rtrim(X_temp)));
 
     string N_temp;
     getline(cin, N_temp);
 
-    long N = stoi(ltrim(rtrim(N_temp)));
+    int N = stoi(ltrim(rtrim(N_temp)));
 
     int result = powerSum(X, N);
 
