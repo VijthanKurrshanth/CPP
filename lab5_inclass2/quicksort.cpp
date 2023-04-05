@@ -34,6 +34,25 @@ void rec_quicksort(vector<int>& arr, int len){
     }
 }
 
+void non_rec_quicksort(vector<int>& arr, int len){
+    for(int l = 2; l <= len; l++)[
+        int pivot = arr[l-1];
+        int i = -1;
+        for (int j = 0; j < l-1; j++){
+            if (pivot > arr[j]){
+                i++;
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        i++;
+        int temp = arr[i];
+        arr[i] = pivot;
+        arr[l-1] = temp;
+    ]
+}
+
 int main() {
     int len;
     cout << "Enter the size of the array: ";
@@ -53,7 +72,8 @@ int main() {
     }
     cout << endl;
 
-    rec_quicksort(arr, len);
+    //rec_quicksort(arr, len);
+    non_rec_quicksort(arr, len);
 
     cout << "The sorted is: ";
     for (int i = 0; i < len; i++) {
