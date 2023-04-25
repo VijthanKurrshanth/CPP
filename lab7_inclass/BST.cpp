@@ -57,9 +57,17 @@ struct node *deleteNode(struct node *root, int key) {
       return NULL;
     }
     else if (root->left != NULL && root->right != NULL){
-      node* sm = small(root);
+      node* sm = small(root->right);
       root->key = sm->key;
-      deleteNode(root->right, sm->key);
+      root->right = deleteNode(root->right, sm->key);
+    }
+    else{
+      if (root->left != NULL){
+        return root->left;
+      }
+      else{
+        return root->right;
+      }
     }
     
   }
