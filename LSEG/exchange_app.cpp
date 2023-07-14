@@ -3,6 +3,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 
 struct in_ord{
 
@@ -16,6 +17,36 @@ std::string intToHex(int number) {
     std::stringstream stream;
     stream << std::hex << number;  // Convert int to hexadecimal string
     return stream.str();  // Get the string representation
+}
+
+// Custom comparison function for ascending order
+bool compareByValueA(const in_ord* a, const in_ord* b) {
+    return a->price < b->price;
+}
+
+// Custom comparison function for descending order
+bool compareByValueD(const in_ord* a, const in_ord* b) {
+    return a->price > b->price;
+}
+
+void insertIntoSortedVectorA(std::vector<in_ord*>& sortedVector, in_ord* newValue) {
+    if (sortedVector.empty()) {
+        sortedVector.push_back(newValue);
+        return;
+    }
+
+    auto it = std::lower_bound(sortedVector.begin(), sortedVector.end(), newValue, compareByValueA);
+    sortedVector.insert(it, newValue);
+}
+
+void insertIntoSortedVectorD(std::vector<in_ord*>& sortedVector, in_ord* newValue) {
+    if (sortedVector.empty()) {
+        sortedVector.push_back(newValue);
+        return;
+    }
+
+    auto it = std::lower_bound(sortedVector.begin(), sortedVector.end(), newValue, compareByValueD);
+    sortedVector.insert(it, newValue);
 }
 
 /// creates in_ord struct using the row in the input order
@@ -77,10 +108,10 @@ int main(){
         if (order->inst == "Rose"){
             switch (order->side){
                 case 1:
-                blue_list_rose.push_back(order);
+                insertIntoSortedVectorA(blue_list_rose, order);
                 break;
                 case 2:
-                pink_list_rose.push_back(order);
+                insertIntoSortedVectorD(pink_list_rose, order);
                 break;
             }
 
@@ -88,10 +119,10 @@ int main(){
         else if (order->inst == "Lavender"){
             switch (order->side){
                 case 1:
-                blue_list_lavender.push_back(order);
+                insertIntoSortedVectorA(blue_list_lavender, order);
                 break;
                 case 2:
-                pink_list_lavender.push_back(order);
+                insertIntoSortedVectorD(pink_list_lavender, order);
                 break;
             }
 
@@ -99,10 +130,10 @@ int main(){
         else if (order->inst == "Lotus"){
             switch (order->side){
                 case 1:
-                blue_list_lotus.push_back(order);
+                insertIntoSortedVectorA(blue_list_lotus, order);
                 break;
                 case 2:
-                pink_list_lotus.push_back(order);
+                insertIntoSortedVectorD(pink_list_lotus, order);
                 break;
             }
 
@@ -110,10 +141,10 @@ int main(){
         else if (order->inst == "Tulip"){
             switch (order->side){
                 case 1:
-                blue_list_tulip.push_back(order);
+                insertIntoSortedVectorA(blue_list_tulip, order);
                 break;
                 case 2:
-                pink_list_tulip.push_back(order);
+                insertIntoSortedVectorD(pink_list_tulip, order);
                 break;
             }
 
@@ -121,10 +152,10 @@ int main(){
         else if (order->inst == "Orchid"){
             switch (order->side){
                 case 1:
-                blue_list_orchid.push_back(order);
+                insertIntoSortedVectorA(blue_list_orchid, order);
                 break;
                 case 2:
-                pink_list_orchid.push_back(order);
+                insertIntoSortedVectorD(pink_list_orchid, order);
                 break;
             }
 
